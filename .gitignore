@@ -5,3 +5,6 @@ data/parsing_result/**
 src/library/
 __pycache__/
 .DS_Store
+
+!data/code/.gitkeep
+!data/parsing_result/.gitkeep
