@@ -1,7 +1,7 @@
 node_modules/
 .env
-data/code/
-data/parsing_result/
+data/code/**
+data/parsing_result/**
 src/library/
 __pycache__/
 .DS_Store
