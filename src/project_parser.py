@@ -106,6 +106,15 @@ def parse_project(project_path, project_filter = None):
 
 
 if __name__ == '__main__':
-    project_path="contract_files/decompiled"
-    functions, functions_to_check = parse_project(project_path)
+    project_path="./data/test"
+    # functions, functions_to_check = parse_project(project_path)
     # extract_state_variables_from_code
+
+    all_functions, _ = parse_project(project_path)
+    print(all_functions)
+    # intermediate_path = os.path.join(project_path, "test.txt")
+    # os.makedirs(os.path.dirname(intermediate_path), exist_ok=True)
+
+    with open("res.txt", 'w') as f:
+        for func in all_functions:
+            f.write(str(func) + '\n')

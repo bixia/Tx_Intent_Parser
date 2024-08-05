@@ -15,7 +15,8 @@ This project is designed to assist in determining the intent of transactions. Th
 1. 'project_parser' is used to parse all the functions within the contract and output them in a specific manner
 2. 'function_trace_analyser' is used to analyse and filter out the call trace when calling a specific function
 3. 'selector_extractor' is used to analyses all the function in the contract and found out whose signature matches the method ID
-4. 'tx_intent_judge' contains the core workflow
+4. 'contract_inspector' contains all the process to deal with api to get necessary info
+5. 'tx_intent_judge' contains the core workflow
 
 
 
