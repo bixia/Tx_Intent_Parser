@@ -18,7 +18,7 @@ from function_trace_analyser import TraceAnalyser
 
 load_dotenv()   # Load environment variables
 
-INPUT_PATH = './data/source/label_vault_20240731.xlsx'
+INPUT_PATH = './data/source/未解析top1000_0808.xlsx'
 SOURCE_CODE_PATH = './data/code'
 PARSING_RESULT_PATH = './data/parsing_result'
 
@@ -69,7 +69,7 @@ def remove_solidity_comments(input_file_path, output_file_path):
 
     print("Remove comments done for ", output_file_path)
 
-def fetch_response(code_snippet, method_names):
+def fetch_classification(code_snippet, method_names):
     conn = http.client.HTTPSConnection(f'{API_BASE}')
     headers = {
         'Authorization': f'Bearer {API_KEY}',
@@ -148,7 +148,7 @@ def fetch_response(code_snippet, method_names):
     return None, None
 
 # Main logic where the source code is parsed then analyzed using OpenAI API
-def parse_solidity_files_using_chat():
+def parse_and_classify_solidity_code():
     # parse all solidity files in the directory
     base_path = SOURCE_CODE_PATH
     excel_path = INPUT_PATH
@@ -186,31 +186,6 @@ def parse_solidity_files_using_chat():
                 for func in all_functions:
                     f.write(str(func) + '\n')
 
-            # Filter out the case for registerENS
-            if (to_address == '0x253553366da8546fc250f225fe3d25d0c782303b' and methodId == '0xf14fcbc8') or methodId == '0x74694a2b':
-                results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = ['', 'register ENS', 'Regex', '']
-                continue
-
-            if methodId == '0xc2998238':
-                results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = ['', 'enter markets', 'Regex', '']
-                continue
-
-            if methodId == '0xede4edd0':
-                results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = ['', 'exit market', 'Regex', '']
-                continue
-
-            if methodId == '0xe1fcde8e':
-                results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = ['', 'swap', 'Regex', '']
-                continue
-
-            if methodId == '0x42842e0e':
-                results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = ['', 'send token', 'Regex', '']
-                continue
-
-            if methodId == '0x1ed30e98':
-                results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = ['', '', 'Regex', '']
-                continue
-
             function_name = get_signature_from_id(methodId)
             if not function_name or not any(function_name in func['name'] for func in all_functions):
                 source_code_path = os.path.join(address_path, f"{to_address}.sol")
@@ -223,6 +198,48 @@ def parse_solidity_files_using_chat():
                     continue
             print(f"Function name found for {to_address}: {function_name}")
 
+            # Use regex to match the specific function name and type
+            if 'and' in function_name.toLowerCase():
+                continue
+            else:
+                if 'unwrap' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'unwrap', 'Regex', '']
+                    continue
+                if 'wrap' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'wrap', 'Regex', '']
+                    continue
+                if 'exitmarket' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'exit market', 'Regex', '']
+                    continue
+                if 'entermarket' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'enter market', 'Regex', '']
+                    continue
+                if methodId == '0x74694a2b':
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'register ens', 'Regex', '']
+                    continue
+                if 'farming' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'farming', 'Regex', '']
+                    continue
+                if 'query' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'query', 'Regex', '']
+                    continue
+                if 'migrate' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'migrate', 'Regex', '']
+                    continue
+                if 'shiporder' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'ship order', 'Regex', '']
+                    continue
+                if 'earlyexit' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'exit early', 'Regex', '']
+                    continue
+                if 'buycover' in function_name.toLowerCase():
+                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'buy cover', 'Regex', '']
+                    continue
+
+
+            # 加入后处理，将得到的非白名单结果，再次调用gpt进行判断给出置信分
+
+
             related_functions = func_analyser.analyze_target_functions_within_contract(all_functions, f"{function_name}")
             if not related_functions:
                 results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, pd.NA, pd.NA, pd.NA]
@@ -232,8 +249,7 @@ def parse_solidity_files_using_chat():
             related_functions_content = [next(func['content'] for func in all_functions if func['name'] == name) for name in related_functions]
             contents = '\n'.join(related_functions_content)
 
-
-            label, reason = fetch_response(contents, related_functions)
+            label, reason = fetch_classification(contents, related_functions)
             results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, label, reason, contents]
 
             # Save the updated DataFrame back to the same Excel file
@@ -244,6 +260,80 @@ def parse_solidity_files_using_chat():
             time.sleep(0.5)
 
     print(f"Results updated and saved to {excel_path}")
+
+def fetch_confidence_score(project_name, project_intro, function_name, classification):
+    conn = http.client.HTTPSConnection(f'{API_BASE}')
+    headers = {
+        'Authorization': f'Bearer {API_KEY}',
+        'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+        'Content-Type': 'application/json'
+    }
+
+    content = f"""
+    Project Name: {project_name}
+    Project Introduction: {project_intro}
+    Classified Functions: {function_name}
+    Classifications: {classification}
+    """
+
+    prompt_text = f"""
+    You are an engineer skilled in on-chain transaction analysis. 
+    Your task is to assign a confidence score to the classification of transaction behavior.
+    You will be given a project name, a brief introduction to the project, the function names, and the classification of those functions.You need to provide a confidence score from 1 to 10 for this classification, without decimals.
+    """
+
+    format = f"""
+    Please format your response as follows:
+    'Confidence Score: <score>'    
+    """
+
+    data = json.dumps({
+        "model": "gpt-4o",
+        "messages": [
+            {
+                "role": "system",
+                "content": prompt_text
+            },
+            {
+                "role": "user",
+                "content": content
+            },
+            {
+                "role": "user",
+                "content": format
+            }
+        ]
+    })
+
+    attempts = 0
+    max_attempts = 5
+    while attempts < max_attempts:
+        try:
+            conn.request("POST", "/v1/chat/completions", data, headers)
+            res = conn.getresponse()
+            response_data = res.read()
+            response_json = json.loads(response_data.decode("utf-8"))
+            json_string = response_json['choices'][0]['message']['content']
+            print(f"Response received successfully: {json_string}")
+
+            # Parse the confidence score correctly from the response string
+            match = re.search(r'Confidence Score: (\d+)', json_string)
+            if match:
+                confidence_score = int(match.group(1))
+                return confidence_score
+            else:
+                print("Failed to find a confidence score in the response.")
+                attempts += 1
+        except Exception as e:
+            attempts += 1
+            print(f"Attempt {attempts}: Error while fetching confidence score: {e}")
+            if attempts >= max_attempts:
+                print("Maximum retry attempts reached.")
+                return None
+            time.sleep(1)  # Wait for a second before retrying
+        finally:
+            conn.close()
+
 
 def main():
     ### 1. Get imple address
@@ -295,9 +385,23 @@ def main():
 
 
     # ### 4. pasring solidity files, extract core functions and using gpt to analyse
-    parse_solidity_files_using_chat()
+    parse_and_classify_solidity_code()
 
-    ### 5. Check proxy contract info, determine those cant be analysed
+    ### 5. get confidence score for the results from gpt
+    for index, row in df.iterrows():
+        protocol_name = row['protocol_name']
+        project_intro = row['description']
+        function_name = row['Function']
+        classification = row['Category']
+        if pd.isna(classification):
+            continue
+        # Fetch the confidence score for the classification
+        confidence_score = fetch_confidence_score(protocol_name, project_intro, function_name, classification)
+        df.at[index, 'Confidence'] = confidence_score
+        print(f"Confidence score for {protocol_name}: {confidence_score}")
+        time.sleep(0.5)
+
+    # ### 6. Check proxy contract info, determine those cant be analysed
     time.sleep(3)
     for index, row in df.iterrows():
         if row['address'] == row['Imple_address'] and pd.isna(row['Category']):
