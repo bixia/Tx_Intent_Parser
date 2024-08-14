@@ -8,3 +8,4 @@ __pycache__/
 
 !data/code/.gitkeep
 !data/parsing_result/.gitkeep
+myTxIntentEnv/
