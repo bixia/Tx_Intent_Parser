@@ -1,0 +1,401 @@
+id,chain,name,has_supported_portfolio,tvl,chain_id
+eth2,eth,Eth2,true,88436591077.9395,1
+lido,eth,LIDO,true,26216931789.359203,1
+bsc_bnbchain,bsc,BNB Chain Staking,true,16092281843.07002,56
+aave3,eth,Aave V3,true,8984843737.412548,1
+makerdao,eth,Maker,true,6046123784.218182,1
+etherfi,eth,ether.fi,true,5858342506.05066,1
+eigenlayer,eth,EigenLayer,true,4115366077.893545,1
+spark,eth,Spark,true,3255171105.4140615,1
+pendle2,eth,Pendle V2,true,2680350640.374288,1
+rocketpool,eth,Rocket Pool,true,2291577608.5238547,1
+ethena,eth,Ethena,true,2230362014.6156096,1
+uniswap3,eth,Uniswap V3,true,2195469549.170163,1
+curve,eth,Curve,true,2182424997.603416,1
+zircuit,eth,Zircuit,true,2164005153.918258,1
+swellnetwork,eth,Swell,true,1871506602.6441026,1
+bsc_pancakeswap,bsc,PancakeSwap,true,1634057311.5505078,56
+bsc_venus,bsc,Venus,true,1554318934.7617984,56
+arb_openeden,arb,OpenEden,true,1444857372.9393914,42161
+aave2,eth,Aave V2,true,1402614648.0700586,1
+polygon_staking,eth,Polygon Staking,true,1347121961.010984,1
+mnteth,eth,MantleETH,true,1337131363.6535814,1
+puffer,eth,Puffer Finance,true,1237084577.9875267,1
+uniswap2,eth,Uniswap V2,true,1199858138.075124,1
+stakefish,eth,StakeFish,true,1198614814.7058623,1
+bsc_solv,bsc,Solv,true,1138879344.1978912,56
+convex,eth,Convex,true,1133567079.2797315,1
+compound3,eth,Compound V3,true,1122143933.3426235,1
+symbiotic,eth,Symbiotic,true,1044270882.8552077,1
+base_aerodrome,base,Aerodrome,true,968027621.1795404,8453
+morphoblue,eth,Morpho Blue,true,959392019.09551,1
+renzo,eth,Renzo,true,906078773.4297206,1
+bsc_trustswap,bsc,TrustSwap,true,894371939.0934613,56
+unicrypt,eth,UNCX Network,true,809009757.3733859,1
+magpiexyz,eth,Magpie XYZ,true,808600061.7441522,1
+frax,eth,Frax,true,752976522.7636343,1
+kelpdao,eth,Kelp DAO,true,711390988.3046964,1
+arb_aave3,arb,Aave V3,true,670718391.6407524,42161
+compound,eth,Compound,true,595232962.8956237,1
+mellow,eth,mellow,true,539328257.220812,1
+merlin_solv,merlin,Solv,true,532699825.6607919,4200
+karak,eth,Karak,true,525060379.6986955,1
+balancer2,eth,Balancer V2,true,521891069.51034194,1
+matic_uniswap3,matic,Uniswap V3,true,494054520.5858326,137
+chainlink,eth,ChainLink,true,471735064.3291853,1
+bsc_pancakeswap3,bsc,PancakeSwap V3,true,463212812.86830556,56
+ftm_pwawallet,ftm,Fantom fWallet,true,424520325.9668384,250
+gnosis_safe,eth,Gnosis Safe,true,420968004.38981724,1
+aoarweave,eth,AO,true,410565438.39466965,1
+aavemorpho,eth,Morpho AAVE,true,407666835.6448801,1
+kcc_staking,kcc,KCC Staking,true,384522628.67486054,321
+arb_gmx2,arb,GMX V2,true,372676938.5742337,42161
+arb_thegraph,arb,The Graph,true,368172747.5086291,42161
+liquity,eth,Liquity,true,366660908.1196457,1
+elixir,eth,Elixir,true,359199980.49109304,1
+bsc_unicrypt,bsc,UNCX Network,true,354055675.74798715,56
+stader,eth,Stader,true,340437842.088909,1
+ron_staking,ron,RON Staking,true,340105206.8546666,2020
+flr_flare,flr,flare,true,339100867.43135786,14
+sablier,eth,Sablier,true,331157300.8364253,1
+ron_axieinfinity,ron,Axie Infinity,true,330150184.85862625,2020
+bb_bouncebit,bb,BounceBit,true,320586640.23987114,6001
+fluid,eth,Fluid,true,319864454.42504495,1
+aavemorpho3,eth,Morpho AAVE V3,true,317617472.1845306,1
+blur,eth,Blur,true,317482446.2054099,1
+team,eth,Team Finance,true,298521339.5897441,1
+avax_benqi,avax,BENQI,true,296008027.79186434,43114
+makerdao_governance,eth,Maker Governance,true,295510097.1663731,1
+avax_aave3,avax,Aave V3,true,292512164.80882347,43114
+scrl_penpad,scrl,Pencils Protocol,true,288994664.0035924,534352
+matic_aave3,matic,Aave V3,true,280139337.3803546,137
+bsc_bouncebit,bsc,BounceBit,true,267054974.6184034,56
+arb_gmx,arb,GMX,true,261567921.70059794,42161
+olas,eth,Autonolas,true,260920388.61736524,1
+arb_uniswap3,arb,Uniswap V3,true,253173992.138778,42161
+sophon,eth,sophon,true,243792420.40020826,1
+liquidcollective,eth,Liquid Collective,true,242637675.307604,1
+pls_pulsex,pls,PulseX,true,234501040.61269617,369
+arb_pendle2,arb,Pendle V2,true,232871040.09190142,42161
+cro_vvs,cro,VVS Finance,true,225104770.97328457,25
+aurafinance,eth,Aura Finance,true,221710884.78379354,1
+pepecoin,eth,Pepecoin,true,220834330.80795565,1
+ondo,eth,Ondo Finance,true,220815733.2032207,1
+mantradao,eth,MantraDAO,true,220094558.6892648,1
+linea_zerolend,linea,ZeroLend,true,218553944.13883144,59144
+blast_thruster,blast,Thruster,true,214552685.3756132,81457
+kiln,eth,Kiln,true,214188780.98978686,1
+bsc_helio,bsc,Lista DAO,true,211896388.0192837,56
+yearn2,eth,Yearn V2,true,211089151.36146688,1
+illuvium,eth,Illuvium,true,209512992.520491,1
+blast_juice,blast,Juice,true,198142591.78873393,81457
+core_colend,core,Colend,true,196981307.264345,1116
+mode_lineabank,mode,LayerBank,true,191075826.9504189,34443
+arb_compound3,arb,Compound V3,true,190512532.06700987,42161
+sushiswap,eth,SushiSwap,true,185938115.70729604,1
+acrocc_v2,eth,Across V2,true,185549156.6154212,1
+arb_livepeer,arb,Livepeer,true,181860446.77800038,42161
+btr_avalon,btr,Avalon Finance,true,181271559.6473635,200901
+bsc_synclub,bsc,Synclub,true,178080208.09745657,56
+blast_ring,blast,Ring Exchange,true,174516923.2605607,81457
+op_velodrome2,op,Velodrome V2,true,169688009.542216,10
+mode_ionic,mode,ionic,true,164315034.9119583,34443
+morpheus,eth,Morpheus,true,162011233.54718533,1
+b2_hive,b2,Hive Protocol,true,161122029.49991894,223
+fuel,eth,Fuel,true,158763320.28433907,1
+stakewise,eth,StakeWise,true,158166696.92865738,1
+core_coredao,core,Core Dao,true,152545446.67078185,1116
+b2_unirouter,b2,UniRouter,true,150105301.30014652,223
+enzyme,eth,Enzyme,true,149294424.01286447,1
+op_aave3,op,Aave V3,true,145943030.26055884,10
+base_uniswap3,base,Uniswap V3,true,144781413.69258866,8453
+ron_katana,ron,Katana,true,143233685.0481384,2020
+avax_traderjoexyz,avax,Trader Joe,true,138251460.89616963,43114
+scrl_aave3,scrl,Aave V3,true,134343281.31600615,534352
+usualmoney,eth,Usual,true,133855926.08197063,1
+cro_tectonic,cro,Tectonic,true,133180578.43165985,25
+rockx,eth,Bedrock,true,133138727.66538496,1
+blast_hyperlock,blast,Hyperlock Finance,true,130562946.2114678,81457
+olympusdao,eth,Olympus,true,129140318.21090648,1
+floki,eth,FLOKI,true,128808380.12915577,1
+bsc_avalon,bsc,Avalon Finance,true,128514577.94756173,56
+gearbox,eth,Gearbox,true,124953873.73632507,1
+fxprotocol,eth,f(x) Protocol,true,123926543.1254495,1
+centrifuge,eth,Centrifuge,true,121688331.1941536,1
+op_velodrome,op,Velodrome,true,120779107.53670251,10
+stargate,eth,Stargate,true,118686844.49257387,1
+wayfinder,eth,Wayfinder,true,118377824.18325578,1
+arb_solv,arb,Solv,true,117573880.24606515,42161
+maple,eth,Maple,true,114314665.06794263,1
+iotx_iotex_staking,iotx,IoTeX Staking,true,113729695.27501662,4689
+mezo,eth,Mezo,true,113262686.44816656,1
+mnt_moe,mnt,Merchant Moe,true,112753092.92964843,5000
+bsc_sakai,bsc,Sakai Vault,true,110111773.37964055,56
+bsc_nfprompt,bsc,NFPrompt,true,109073702.05479452,56
+mnt_agni,mnt,AGNI,true,108938661.08750606,5000
+sabaiprotocol,eth,Sabai Protocol,true,108812593.74718535,1
+shibaswap,eth,ShibaSwap,true,108354250.49659872,1
+bsc_uniswap3,bsc,Uniswap V3,true,105366913.38366774,56
+arb_gtrade,arb,gTrade,true,103370106.64017633,42161
+rari,eth,Rari Capital,true,103340258.28254548,1
+arb_curve,arb,Curve,true,102409256.12053134,42161
+arb_vertex,arb,Vertex,true,102147194.08353771,42161
+bb_bbscan,bb,BounceBit Staking,true,101716715.7912012,6001
+wemix_wemixfi,wemix,WEMIX.FI,true,100125055.81926483,1111
+fraxlend,eth,Fraxlend,true,98756783.0189204,1
+apestake,eth,ApeStake,true,96381224.4838806,1
+manta_cedefi,manta,Manta CeDefi,true,95966665.40748432,169
+mnt_init,mnt,INIT Capital,true,95334160.75936905,5000
+base_extrafinance,base,Extra Finance,true,94942505.28040022,8453
+coinbasewallet,eth,Coinbase Wallet,true,93103109.58250101,1
+memecoin,eth,Memecoin,true,92901539.94836394,1
+blast_wasabi,blast,Wasabi Protocol,true,91995201.31273161,81457
+bsc_elephant,bsc,Elephant Money,true,91183915.81072223,56
+instadapplite,eth,Instadapp Lite,true,90645219.78125326,1
+arrakis,eth,Arrakis Finance,true,89784865.87465759,1
+base_morphoblue,base,Morpho Blue,true,89606626.646389,8453
+arb_magpiexyz,arb,Magpie XYZ,true,87626571.34548444,42161
+openeden,eth,OpenEden,true,87110729.53518128,1
+xdai_balancer2,xdai,Balancer V2,true,85697850.88124584,100
+arb_beefy,arb,Beefy,true,84944498.42930605,42161
+scrl_ambient,scrl,Ambient,true,83940517.16651206,534352
+base_aave3,base,Aave V3,true,83203869.72842239,8453
+api3,eth,API3,true,83015201.70343277,1
+arb_bridge_arbitrum,arb,Arbitrum Bridge,true,82916285.07520533,42161
+bsc_astherus,bsc,Astherus,true,82171921.86285572,56
+arb_stargate,arb,Stargate,true,80971129.33133508,42161
+synthetix,eth,Synthetix,true,80393762.63343735,1
+ib,eth,Iron Bank,true,80020293.2736571,1
+pancakeswap3,eth,PancakeSwap V3,true,79935896.70075276,1
+stakedao,eth,Stake DAO,true,78171859.73877674,1
+amphor,eth,Amphor,true,78044510.73141164,1
+goldfinch,eth,Goldfinch,true,76522350.17082076,1
+linea_mendi,linea,Mendi Finance,true,76320129.16319607,59144
+avax_unvest,avax,Unvest,true,76259711.73990689,43114
+arb_balancer2,arb,Balancer V2,true,74667073.4789621,42161
+mnt_karaknetwork,mnt,Karak,true,73569156.15603016,5000
+mnt_rewardstation,mnt,Mantle Reward Station,true,72388494.8664938,5000
+crvusd,eth,Curve Stablecoin,true,72148256.42954816,1
+op_synthetix,op,Synthetix,true,71181069.9254322,10
+btr_pell,btr,Pell Network,true,70783913.03784885,200901
+stakestone,eth,StakeStone,true,70525959.09035602,1
+linea_lineabank,linea,LayerBank,true,70115131.57608368,59144
+paal,eth,PAAL AI,true,68707561.22581242,1
+bsc_magpiexyz,bsc,Magpie XYZ,true,68154919.8058137,56
+tokensets,eth,TokenSets,true,67770759.99501972,1
+xdai_gnosis,xdai,Gnosis,true,67681760.6262264,100
+base_basebridge,base,Base Bridge,true,67673324.1917445,8453
+tokenlon,eth,Tokenlon,true,67599500.26136732,1
+bsc_coinwind,bsc,CoinWind,true,67329686.5564997,56
+alpha2,eth,Alpha Homora V2,true,66149926.5658959,1
+arb_radiantcapital2,arb,Radiant Capital V2,true,65995277.347879775,42161
+venus,eth,Venus,true,65927381.40476883,1
+uwulend,eth,UwU Lend,true,65095615.15842568,1
+base_moonwell,base,Moonwell,true,64858235.4477975,8453
+solv,eth,Solv,true,63234260.17848829,1
+ftm_soul,ftm,Soul,true,63085654.67442457,250
+scrl_tokan,scrl,Tokan Exchange,true,62876487.73952365,534352
+1inch2,eth,1inch,true,62875279.93737605,1
+base_beefy,base,Beefy,true,61897487.4049964,8453
+chiliz_chilizstaking,chiliz,Chiliz Staking,true,61809102.00639477,88888
+bsc_thena,bsc,Thena,true,61385548.77451577,56
+matic_stader,matic,Stader,true,60811308.113538705,137
+uma,eth,UMA,true,60335103.13154539,1
+bb_pell,bb,Pell Network,true,59523302.07774605,6001
+cowswap,eth,CoW Swap,true,59007698.35158815,1
+arb_xai,arb,XAI,true,58944424.63767477,42161
+sommelier,eth,Sommelier,true,58855294.70519647,1
+matic_aave,matic,Aave,true,58362777.93940865,137
+merlin_merlinswap,merlin,MerlinSwap,true,58126726.24881331,4200
+arb_camelot2,arb,Camelot V3,true,57816069.29220795,42161
+bancor3,eth,Bancor V3,true,57536334.449613854,1
+zentry,eth,Zentry,true,56258832.33907792,1
+arb_traderjoexyz,arb,Trader Joe,true,56094496.55182543,42161
+stakeland,eth,Stakeland,true,55673749.92747694,1
+etherdelta,eth,EtherDelta,true,55336968.915045194,1
+portalgaming,eth,Portal Gaming,true,54083126.43800508,1
+sei_yei,sei,Yei Finance,true,53563020.90182098,1329
+matic_quickswap,matic,QuickSwap,true,53160864.82578247,137
+xdai_aave3,xdai,Aave V3,true,52295391.955683574,100
+smardex,eth,SmarDex,true,52198609.41214328,1
+hashking_neth,eth,NodeDao,true,51909442.531300426,1
+ulx_ulxstaking,ulx,ULX Staking,true,50775917.58652511,1231
+bsc_seedify,bsc,Seedify,true,50745517.5106455,56
+btr_desyn,btr,DeSyn,true,50495804.809321605,200901
+dinero,eth,Dinero,true,50249421.763052136,1
+bsc_floki,bsc,FLOKI,true,49936813.90136196,56
+arb_silo,arb,Silo,true,49511343.474075116,42161
+octant,eth,Octant,true,48995677.83995169,1
+azuro,eth,azuro,true,48966547.5533717,1
+op_kwenta,op,Kwenta,true,48456628.20401297,10
+arb_camelot,arb,Camelot,true,48394917.18027715,42161
+arb_llamapay,arb,LlamaPay,true,47568318.42434066,42161
+bsc_kinza,bsc,Kinza Finance,true,47531400.08662752,56
+op_stargate,op,Stargate,true,47142093.501914434,10
+merlin_avalon,merlin,Avalon Finance,true,47084909.09530515,4200
+linea_stargate,linea,Stargate,true,46725591.67699267,59144
+real_realraw,real,re.al,true,46417308.06900787,111188
+superverse,eth,SuperVerse DAO,true,45726325.28458456,1
+avax_gmx,avax,GMX,true,45687506.100379,43114
+op_uniswap3,op,Uniswap V3,true,45532450.8076793,10
+bsc_aave3,bsc,Aave V3,true,45464853.33221053,56
+silo,eth,Silo,true,45196310.448935956,1
+ankr,eth,Ankr,true,45016283.42560882,1
+hedgey,eth,Hedgey,true,44405700.29964659,1
+matic_mantradao,matic,MantraDAO,true,43268673.32583088,137
+arb_aurafinance,arb,Aura Finance,true,42877454.55219308,42161
+cro_orby,cro,Orby Network,true,42623156.9841217,25
+karak_karaknetwork,karak,Karak,true,42582384.129774116,2410
+chai,eth,chai,true,42388180.59015481,1
+beefy,eth,Beefy,true,41987341.445035756,1
+xdai_gnosisbeacon,xdai,Gnosis Beacon Chain,true,41718446.290442735,100
+yieldguild,eth,Yield Guild Games,true,41250925.869566135,1
+arb_mux,arb,MUX,true,41220697.628959365,42161
+aethir,eth,Aethir,true,40839529.89195315,1
+avax_deltaprime,avax,DeltaPrime,true,40713152.70788529,43114
+arb_karaknetwork,arb,Karak,true,40600020.80985034,42161
+arb_tapioca,arb,Tapioca,true,40597518.70611465,42161
+eco,eth,Eco,true,40557371.60367578,1
+audius,eth,Audius,true,40521545.31753604,1
+arb_hedgey,arb,Hedgey,true,40310750.84988657,42161
+xdai_spark,xdai,Spark,true,39863466.186089545,100
+reya_reyaxyz,reya,Reya,true,39389277.68254988,1729
+celo_celo,celo,Celo,true,39250801.53177338,42220
+base_uniswap2,base,Uniswap V2,true,39158451.81441733,8453
+desyn,eth,DeSyn,true,38320975.2026047,1
+woo,eth,WOO Network,true,38096435.08670501,1
+bsc_mmint,bsc,MMIT,true,38038613.14909051,56
+threshold,eth,Threshold,true,37911590.36928654,1
+cartesi,eth,Cartesi,true,37500938.49752085,1
+mobm_moonbeam,mobm,Moonbeam,true,37239139.76039553,1284
+index,eth,Index Coop,true,36480036.5153145,1
+bsc_filet,bsc,Filet,true,35977249.89458408,56
+arb_convex,arb,Convex,true,35861044.47257546,42161
+linea_thenile,linea,NILE,true,35639664.530139215,59144
+base_cygnus,base,Cygnus Finance,true,35556280.279341474,8453
+arb_dolomite,arb,Dolomite,true,35123702.2618376,42161
+base_seamless,base,Seamless Protocol,true,34757706.75665076,8453
+base_robots,base,Robots Farm,true,34364939.686838225,8453
+avax_gmx2,avax,GMX V2,true,34105763.39088472,43114
+fluence,eth,Fluence DAO,true,33917418.059662566,1
+bsc_radiantcapital2,bsc,Radiant Capital V2,true,33742757.68601654,56
+arb_ramses,arb,RAMSES,true,33271299.443897575,42161
+b2_pell,b2,Pell Network,true,33218352.3051904,223
+bsc_tranchess2,bsc,TRANCHESS V2,true,32500271.230157826,56
+scrl_lineabank,scrl,LayerBank,true,32478839.633183975,534352
+sgn,eth,SGN Celer Network,true,31855601.342661824,1
+linea_lynex,linea,Lynex,true,31733476.64373582,59144
+base_compound3,base,Compound V3,true,31687615.59441972,8453
+bsc_biswap,bsc,Biswap,true,31343131.810412813,56
+coinweb,eth,Coinweb,true,30849484.477207623,1
+lendcurve,eth,Curve LlamaLend,true,30841005.18423134,1
+gnosis,eth,Gnosis,true,30634845.479650773,1
+singularitydao,eth,SingularityDao,true,30375572.928819414,1
+arb_abracadabra,arb,Abracadabra,true,30207349.15644832,42161
+railgun,eth,RAILGUN,true,29966473.672330465,1
+matic_compound3,matic,Compound V3,true,29829135.309281547,137
+op_optimism_bridge,op,Optimism Bridge,true,29784440.324224766,10
+cro_veno,cro,VENO,true,29717505.178145938,25
+altlayer,eth,AltLayer,true,29633917.202799134,1
+badger,eth,Badger DAO,true,29379105.019998603,1
+scrl_nuri,scrl,NURI Exchange,true,29147941.070271067,534352
+linea_mitosis,linea,Mitosis,true,28838335.707726303,59144
+matic_stargate,matic,Stargate,true,28682267.968471035,137
+hypercycle,eth,Hypercycle,true,28424666.5428548,1
+tokemak,eth,Tokemak,true,28366213.368994348,1
+bsc_apollox,bsc,APX Finance,true,28303121.970780253,56
+limewire,eth,LimeWire,true,28286911.90334684,1
+term,eth,Term Finance,true,28277449.537734214,1
+blast_orbitlending,blast,Orbit Protocol,true,28241645.174811456,81457
+bsc_hedgey,bsc,Hedgey,true,27868668.685240548,56
+pls_liquidloans,pls,LiquidLoans.io,true,27833949.89646542,369
+benddao,eth,Bend DAO,true,27817586.54324305,1
+fsn_chainge,fsn,Chainge Finance,true,27691869.808328904,32659
+equilibria,eth,Equilibria,true,27636572.135762855,1
+alchemix2,eth,Alchemix V2,true,27490631.604989953,1
+xdai_aurafinance,xdai,Aura Finance,true,27276034.101114817,100
+bsc_tokentool,bsc,Token Tool,true,27196066.412868097,56
+arb_sushiswap,arb,SushiSwap,true,27057508.341133084,42161
+base_stargate,base,Stargate,true,26993145.222998314,8453
+scrl_rhomarkets,scrl,Rho Markets,true,26980682.02721598,534352
+thorswap,eth,THORSwap,true,26646550.941661667,1
+frax_curve,frax,Curve,true,26580729.98097564,252
+subquery,eth,SubQuery,true,26537399.53964755,1
+inverse,eth,Inverse,true,26391605.44777452,1
+originstory,eth,Origin Protocol,true,26375734.811563704,1
+op_extrafinance,op,Extra Finance,true,26325020.35765157,10
+trufin,eth,TruFin,true,26189965.555397015,1
+stakelink,eth,stake.link,true,26135163.46687383,1
+arb_synthetix3,arb,Synthetix V3,true,26098002.97281402,42161
+arb_perp88,arb,HMX,true,26002108.58269369,42161
+syrup,eth,Syrup,true,25684474.336586993,1
+clearpool,eth,Clearpool,true,25660932.41397529,1
+cream,eth,Cream,true,25242412.962669265,1
+mnt_pendle2,mnt,Pendle V2,true,25216968.319311332,5000
+bsc_karaknetwork,bsc,Karak,true,25102525.834227905,56
+era_syncswap,era,SyncSwap,true,24982367.136087157,324
+matic_balancer2,matic,Balancer V2,true,24816956.367394377,137
+blast_ambient,blast,Ambient,true,24779051.376056116,81457
+arb_deltaprime,arb,DeltaPrime,true,24500395.126386993,42161
+mobm_moonwell,mobm,Moonwell,true,24372753.480869066,1284
+looksrare,eth,LooksRare,true,24256202.10062935,1
+biconomy,eth,Biconomy,true,24236200.722610172,1
+ftm_wigoswap,ftm,WigoSwap,true,24220323.6947669,250
+arb_gearbox,arb,Gearbox,true,24171095.45060257,42161
+avax_yieldyak,avax,Yield Yak,true,24158723.909021907,43114
+bsc_tokenfi,bsc,TokenFi,true,24131236.732115857,56
+arb_sushiswap_furo,arb,SushiSwapFuro,true,23908847.7802078,42161
+blast_synfutures3,blast,SynFutures V3,true,23778586.255389966,81457
+linea_syncswap,linea,SyncSwap,true,23725155.342724286,59144
+bouncebit,eth,BounceBit,true,23639719.656420466,1
+dmm_exchange,eth,KyberSwap,true,23629933.69193625,1
+piratenation,eth,Pirate Nation,true,23622230.165680107,1
+bsc_bnb48,bsc,48 Club,true,23533706.660266,56
+avax_aave,avax,Aave,true,23423722.258858956,43114
+orbs,eth,Orbs,true,23412938.91033601,1
+dodoex,eth,DODO,true,23176367.751220845,1
+pls_9inch,pls,9inch,true,23045003.532353412,369
+nexus,eth,Nexus Mutual,true,22932627.65779653,1
+kava_perp_kinetix,kava,Kinetix Perp,true,22686354.18565836,2222
+bsc_stargate,bsc,Stargate,true,22458062.030268323,56
+avax_stargate,avax,Stargate,true,22298938.594809674,43114
+unvest,eth,Unvest,true,22292537.894568864,1
+op_beefy,op,Beefy,true,22277294.802063998,10
+stusdt,eth,stUSDT,true,22220954.09157983,1
+lyra2,eth,Lyra V2,true,22123929.245474156,1
+angle,eth,Angle Protocol,true,21893864.080022745,1
+era_zknation,era,ZK Nation,true,21756163.7990403,324
+arb_woo,arb,WOO Network,true,21756029.96115876,42161
+base_team,base,Team Finance,true,21732966.456730757,8453
+op_sablier,op,Sablier,true,21687797.320545163,10
+frax_fraxfinance,frax,Frax,true,21672069.020212952,252
+btr_bitsmiley,btr,bitSmiley,true,21462072.509687692,200901
+daomaker,eth,Dao Maker,true,21398676.426223446,1
+avax_gogopool,avax,gogopool,true,21172988.00257612,43114
+cro_ferro,cro,Ferro Protocol,true,21099414.304027434,25
+tokamak,eth,Tokamak Network,true,20759296.218755584,1
+mitosis,eth,Mitosis,true,20504062.72591943,1
+bsc_chaingpt,bsc,ChainGPT,true,20458917.28384065,56
+blast_blitzexchange,blast,Blitz,true,20444587.217758752,81457
+ftm_equalizer_exchange,ftm,Equalizer,true,20365005.33057303,250
+xdai_origintrail,xdai,OriginTrail,true,20328406.811029647,100
+bsc_dodoex,bsc,DODO,true,20303277.981892053,56
+op_superfluid,op,Superfluid,true,20297873.758733585,10
+mnt_stargate,mnt,Stargate,true,20236054.52236437,5000
+arb_fluid,arb,Fluid,true,20082860.377038494,42161
+temple,eth,TempleDAO,true,20025684.568657905,1
+bsc_visor,bsc,Gamma,true,19852950.977912582,56
+reserve,eth,Reserve Protocol,true,19783222.311750818,1
+tokenfi,eth,TokenFi,true,19657002.311504606,1
+op_silo,op,Silo,true,19412575.886572488,10
+gondi,eth,Gondi,true,19404658.771577932,1
+avax_nereus,avax,Nereus Finance,true,19289816.577229407,43114
+base_radiantcapital2,base,Radiant Capital V2,true,19092530.56814831,8453
+monprotocol,eth,MON Protocol,true,19057804.785906974,1
+arb_sablier,arb,Sablier,true,19028440.70896127,42161
+arb_equilibria,arb,Equilibria,true,19010553.870274182,42161
+contango,eth,Contango,true,19005002.214391343,1
+dioneprotocol,eth,Dione Protocol,true,18957002.56466796,1
+avax_gamerarena,avax,Gamer Arena,true,18509451.689171363,43114
+blast_yolo,blast,YOLO GAMES,true,18484613.16511952,81457
+prisma,eth,Prisma Finance,true,18450571.432505615,1

@@ -1,19 +1,19 @@
 chainId,chain_name,shortName
 1,Ethereum Mainnet,eth
-56,BNB Smart Chain Mainnet,bnb
-42161,Arbitrum One,arb1
+56,BNB Smart Chain Mainnet,bsc
+42161,Arbitrum One,arb
 8453,Base,base
 23888,Blast Testnet,blastT
 81457,Blast,blastmainnet
 43114,Avalanche C-Chain,avax
 137,Polygon Mainnet,matic
 59144,Linea,linea
-10,OP Mainnet,oeth
+10,OP Mainnet,op
 25,Cronos Mainnet,cro
-5000,Mantle,mantle
+5000,Mantle,mnt
 200901,Bitlayer Mainnet,btr
-6001,BounceBit Mainnet,bouncebit-mainnet
-100,Gnosis,gno
+6001,BounceBit Mainnet,bb
+100,Gnosis,xdai
 369,PulseChain,pls
 314,Filecoin - Mainnet,filecoin
 2222,Kava,kava
@@ -22,15 +22,15 @@ chainId,chain_name,shortName
 250,Fantom Opera,ftm
 32659,Fusion Mainnet,fsn
 42220,Celo Mainnet,celo
-324,zkSync Mainnet,zksync
+324,zkSync Mainnet,era
 1088,Metis Andromeda Mainnet,metis-andromeda
 169,Manta Pacific Mainnet,manta
 592,Astar,astr
-252,Fraxtal,fraxtal
+252,Fraxtal,frax
 60808,BOB,bob
-4689,IoTeX Network Mainnet,iotex-mainnet
+4689,IoTeX Network Mainnet,iotx
 40,Telos EVM Mainnet,TelosEVM
-1284,Moonbeam,mbeam
+1284,Moonbeam,mobm
 14,Flare Mainnet,flr
 1030,Conflux eSpace,cfx
 1313161554,Aurora Mainnet,aurora
@@ -62,7 +62,7 @@ chainId,chain_name,shortName
 321,KCC Mainnet,kcs
 17777,EOS EVM Network,eos
 9001,Evmos,evmos
-1231,Ultron Mainnet,UtronMainnet
+1231,Ultron Mainnet,ulx
 128,Huobi ECO Chain Mainnet,heco
 42170,Arbitrum Nova,arb-nova
 245022934,Neon EVM Mainnet,neonevm-mainnet
@@ -196,7 +196,7 @@ chainId,chain_name,shortName
 117,Uptick Mainnet,auptick
 118,Arcology Testnet,arcology
 120,ENULS Testnet,enulst
-121,Realchain Mainnet,REAL
+121,Realchain Mainnet,real
 123,Fuse Sparknet,spark
 124,Decentralized Web Mainnet,dwu
 125,OYchain Testnet,OYchainTestnet
@@ -271,7 +271,7 @@ chainId,chain_name,shortName
 217,SiriusNet V2,SIN2
 220,Scalind Testnet,sepscal
 221,BlockEx Mainnet,BlockEx
-223,B2 Mainnet,B2-mainnet
+223,B2 Mainnet,b2
 224,Viridis Testnet,VRD-Testnet
 225,LACHAIN Mainnet,LA
 226,LACHAIN Testnet,TLA
@@ -693,7 +693,7 @@ chainId,chain_name,shortName
 2370,Nexis Network Testnet,nzt
 2399,BOMB Chain Testnet,bombt
 2400,TCG Verse Mainnet,TCGV
-2410,Karak Mainnet,karak-mainnet
+2410,Karak Mainnet,karak
 2415,XODEX,xodex
 2425,King Of Legends Mainnet,kcc
 2442,Polygon zkEVM Cardona Testnet,zkevm-testnet-cardona
@@ -796,7 +796,7 @@ chainId,chain_name,shortName
 4157,CrossFi Testnet,crossfi-testnet
 4162,SX Rollup,SXR
 4181,PHI Network V1,PHIv1
-4200,Merlin Mainnet,Merlin-Mainnet
+4200,Merlin Mainnet,merlin
 4201,LUKSO Testnet,lukso-testnet
 4202,Lisk Sepolia Testnet,lisksep
 4242,Nexi Mainnet,nexi
@@ -1509,7 +1509,7 @@ chainId,chain_name,shortName
 513100,DisChain,dis
 526916,DoCoin Community Chain,DoCoin
 534351,Scroll Sepolia Testnet,scr-sepolia
-534352,Scroll,scr
+534352,Scroll,scrl
 534849,Shinarium Beta,shi
 535037,BeanEco SmartChain,BESC
 552981,One World Chain Testnet,OWCTt
@@ -1727,4 +1727,4 @@ chainId,chain_name,shortName
 10001,ETHW-mainnet,ethw
 5151706,Loot Mainnet,loot
 1380012617,RARI Chain,rari
-2020,Ronin,ronin
+2020,Ronin,ron
