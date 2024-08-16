@@ -91,3 +91,5 @@ xlsx2csv==0.8.1
 polars==1.4.1
 numpy==1.26.4   
 itables==2.1.4
+tqdm
+xlsxwriter
