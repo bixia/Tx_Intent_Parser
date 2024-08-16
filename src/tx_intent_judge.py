@@ -12,13 +12,14 @@ from pathlib import Path
 from project_parser import parse_project
 from tqdm import tqdm
 from dotenv import load_dotenv
+import concurrent.futures
+from concurrent.futures import ThreadPoolExecutor
 from contract_inspector import ContractInspector
 from selector_extractor import SelectorExtractor
 from function_trace_analyser import TraceAnalyser
 
 load_dotenv()   # Load environment variables
 
-INPUT_PATH = './data/source/未解析top1000_0808.xlsx'
 SOURCE_CODE_PATH = './data/code'
 PARSING_RESULT_PATH = './data/parsing_result'
 
@@ -147,120 +148,6 @@ def fetch_classification(code_snippet, method_names):
     
     return None, None
 
-# Main logic where the source code is parsed then analyzed using OpenAI API
-def parse_and_classify_solidity_code():
-    # parse all solidity files in the directory
-    base_path = SOURCE_CODE_PATH
-    excel_path = INPUT_PATH
-    results = pd.read_excel(excel_path)
-    results.set_index(['address', 'method_id'], inplace=True)
-
-    selector_extractor = SelectorExtractor()
-    func_analyser = TraceAnalyser()
-
-    for chainId in tqdm(os.listdir(base_path), desc="Processing Chain IDs"):
-        chainId_path = os.path.join(base_path, chainId)
-        if not os.path.isdir(chainId_path):
-            continue
-
-        filtered_data = results[(results['chain_id'] == int(chainId)) & (results['Imple_address'].notna())]
-
-        for (to_address, methodId), row in filtered_data.iterrows():
-            # Continue if mehtodId or to_address is not available
-            if pd.isna(methodId) or pd.isna(to_address):
-                continue
-
-            print(f"Processing {to_address} with methodId: {methodId} on chain {chainId}")
-
-            address_path = os.path.join(str(chainId_path), to_address)
-            # print(f"Processing {address_path}")
-            if not os.path.isdir(address_path):
-                continue
-
-            all_functions, _ = parse_project(address_path)
-
-            intermediate_path = os.path.join(PARSING_RESULT_PATH, str(chainId), f"{to_address}.txt")
-            os.makedirs(os.path.dirname(intermediate_path), exist_ok=True)
-
-            with open(intermediate_path, 'w') as f:
-                for func in all_functions:
-                    f.write(str(func) + '\n')
-
-            function_name = get_signature_from_id(methodId)
-            if not function_name or not any(function_name in func['name'] for func in all_functions):
-                source_code_path = os.path.join(address_path, f"{to_address}.sol")
-                if not os.path.exists(source_code_path):
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [pd.NA, pd.NA, pd.NA, pd.NA]
-                    continue
-                function_name = selector_extractor.search_signature_from_id(source_code_path, all_functions, methodId)
-                if not function_name:
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [pd.NA, pd.NA, pd.NA, pd.NA]
-                    continue
-            print(f"Function name found for {to_address}: {function_name}")
-
-            # Use regex to match the specific function name and type
-            if 'and' in function_name.toLowerCase():
-                continue
-            else:
-                if 'unwrap' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'unwrap', 'Regex', '']
-                    continue
-                if 'wrap' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'wrap', 'Regex', '']
-                    continue
-                if 'exitmarket' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'exit market', 'Regex', '']
-                    continue
-                if 'entermarket' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'enter market', 'Regex', '']
-                    continue
-                if methodId == '0x74694a2b':
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'register ens', 'Regex', '']
-                    continue
-                if 'farming' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'farming', 'Regex', '']
-                    continue
-                if 'query' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'query', 'Regex', '']
-                    continue
-                if 'migrate' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'migrate', 'Regex', '']
-                    continue
-                if 'shiporder' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'ship order', 'Regex', '']
-                    continue
-                if 'earlyexit' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'exit early', 'Regex', '']
-                    continue
-                if 'buycover' in function_name.toLowerCase():
-                    results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, 'buy cover', 'Regex', '']
-                    continue
-
-
-            # 加入后处理，将得到的非白名单结果，再次调用gpt进行判断给出置信分
-
-
-            related_functions = func_analyser.analyze_target_functions_within_contract(all_functions, f"{function_name}")
-            if not related_functions:
-                results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, pd.NA, pd.NA, pd.NA]
-                continue
-            print(f"Related functions found for {function_name}: {related_functions}")
-
-            related_functions_content = [next(func['content'] for func in all_functions if func['name'] == name) for name in related_functions]
-            contents = '\n'.join(related_functions_content)
-
-            label, reason = fetch_classification(contents, related_functions)
-            results.loc[(to_address, methodId), ['Function', 'Category', 'Reason', 'Code']] = [function_name, label, reason, contents]
-
-            # Save the updated DataFrame back to the same Excel file
-            try:
-                results.to_excel(excel_path, merge_cells=False)
-            except Exception as e:
-                print(f"Error when trying to save to Excel: {e}")
-            time.sleep(0.5)
-
-    print(f"Results updated and saved to {excel_path}")
-
 def fetch_confidence_score(project_name, project_intro, function_name, classification):
     conn = http.client.HTTPSConnection(f'{API_BASE}')
     headers = {
@@ -335,85 +222,166 @@ def fetch_confidence_score(project_name, project_intro, function_name, classific
             conn.close()
 
 
-def main():
-    ### 1. Get imple address
-    df = pd.read_excel(INPUT_PATH, sheet_name='Sheet1')
+# Main logic where the source code is parsed then analyzed using OpenAI API
+def parse_and_classify_solidity_code(chain_id, method_id, to_address, address_path, results_df):
+    selector_extractor = SelectorExtractor()
+    func_analyser = TraceAnalyser()
 
-    ## Add a new column to store the implementation address
-    df['Imple_address'] = None
-    df['Info'] = None
+    print(f"Processing {to_address} with methodId: {method_id} on chain {chain_id}")
+    
+    if not os.path.isdir(address_path):
+        return results_df
 
-    contract_inspector = ContractInspector(config)
+    # parse the project and get all functions
+    all_functions, _ = parse_project(address_path)
 
-    for index, row in df.iterrows():
-        # if row['address'] != '0x9960dfe37283a69e43aaba87f91d161694151779':
-        #     continue
+    # Save the functions to a file for future reference
+    intermediate_path = os.path.join(PARSING_RESULT_PATH, str(chain_id), f"{to_address}.txt")
+    os.makedirs(os.path.dirname(intermediate_path), exist_ok=True)
+    with open(intermediate_path, 'w') as f:
+        for func in all_functions:
+            f.write(str(func) + '\n')
 
-        imple_address, info = contract_inspector.fetch_chain_implementation(row['chain_id'], row['address'])
-        time.sleep(0.5)
-        df.at[index, 'Imple_address'] = imple_address
-        df.at[index, 'Info'] = info
-        print("Handle ", row['chain_id'], row['address'])
-        df.to_excel(INPUT_PATH, sheet_name='Sheet1', index=False)
+    # get the function name from the methodId
+    function_name = get_signature_from_id(method_id)
+    if not function_name or not any(function_name in func['name'] for func in all_functions):
+        source_code_path = os.path.join(address_path, f"{to_address}.sol")
+        if not os.path.exists(source_code_path):
+            return {'address': to_address, 'method_id': method_id, 'Function': pd.NA, 'Category': pd.NA, 'Reason': pd.NA, 'Code': pd.NA}
+        function_name = selector_extractor.search_signature_from_id(source_code_path, all_functions, method_id)
+        if not function_name:
+            return {'address': to_address, 'method_id': method_id, 'Function': pd.NA, 'Category': pd.NA, 'Reason': pd.NA, 'Code': pd.NA}
+    
+    function_name_lower = function_name.lower()
+    categories = {
+        'unwrap': 'unwrap',
+        'wrap': 'wrap',
+        'exitmarket': 'exit market',
+        'entermarket': 'enter market',
+        'farming': 'farming',
+        'query': 'query',
+        'migrate': 'migrate',
+        'shiporder': 'ship order',
+        'earlyexit': 'exit early',
+        'buycover': 'buy cover'
+    }
+    
+    for key, value in categories.items():
+        if key in function_name_lower:
+            return {'address': to_address, 'method_id': method_id, 'Function': function_name, 'Category': value, 'Reason': 'Regex', 'Code': ''}
+    
+    related_functions = func_analyser.analyze_target_functions_within_contract(all_functions, f"{function_name}")
+    if not related_functions:
+        return {'address': to_address, 'method_id': method_id, 'Function': function_name, 'Category': pd.NA, 'Reason': pd.NA, 'Code': pd.NA}
 
+    related_functions_content = [next(func['content'] for func in all_functions if func['name'] == name) for name in related_functions]
+    contents = '\n'.join(related_functions_content)
 
-    ### 2. Download contract source code
-    for index, row in df.iterrows():
-        imple_address = row['Imple_address']
-        # print("Unique imple len", len(df['Imple_address']),len(df['Imple_address'].unique()))
-        chainId = row['chain_id']
-        # if str(chainId) in ['1', '56', '137', '59144', '8453', '42161', '534352', '10', '34443', '43114', '250', '5000']:
-        #     continue
-        # Check if the implementation address is not None
-        if pd.notna(imple_address):
-            # Download the source code
-            print(f"Downloading source code for {row['address']} on chain {chainId}")
-            contract_inspector.download_contract_source(SOURCE_CODE_PATH, imple_address, chainId, f"{row['address']}")
+    label, reason = fetch_classification(contents, related_functions)
+    return {'address': to_address, 'method_id': method_id, 'Function': function_name, 'Category': label, 'Reason': reason, 'Code': contents}
 
+# Do the preprocessing and classification for each chain
+def process_and_classify(chain_id, base_path, results_df):
+    chain_id_path = os.path.join(base_path, chain_id)
+    updated_rows = []
+    if not os.path.isdir(chain_id_path):
+        return updated_rows
 
-    ### 3. remove comments for all the solidity files already download
-    for subdir in os.listdir(SOURCE_CODE_PATH):
-        subdir_path = os.path.join(SOURCE_CODE_PATH, subdir)
-        if os.path.isdir(subdir_path):
-            for ssubdir in os.listdir(subdir_path):
-                ssubdir_path = os.path.join(subdir_path, ssubdir)
-                if os.path.isdir(ssubdir_path):
-                    for file in os.listdir(ssubdir_path):
-                        file_path = os.path.join(ssubdir_path, file)
-                        if file_path.endswith('.sol'):
-                            remove_solidity_comments(file_path, file_path)
-
-
-    # ### 4. pasring solidity files, extract core functions and using gpt to analyse
-    parse_and_classify_solidity_code()
-
-    ### 5. get confidence score for the results from gpt
-    for index, row in df.iterrows():
-        protocol_name = row['protocol_name']
-        project_intro = row['description']
-        function_name = row['Function']
-        classification = row['Category']
-        if pd.isna(classification):
+    filtered_data = results_df[(results_df['chain_id'] == int(chain_id)) & (results_df['Imple_address'].notna())]
+    for (to_address, method_id), row in filtered_data.iterrows():
+        if pd.isna(method_id) or pd.isna(to_address):
             continue
-        # Fetch the confidence score for the classification
-        confidence_score = fetch_confidence_score(protocol_name, project_intro, function_name, classification)
-        df.at[index, 'Confidence'] = confidence_score
-        print(f"Confidence score for {protocol_name}: {confidence_score}")
-        time.sleep(0.5)
 
-    # ### 6. Check proxy contract info, determine those cant be analysed
-    time.sleep(3)
-    for index, row in df.iterrows():
-        if row['address'] == row['Imple_address'] and pd.isna(row['Category']):
-            chain_id = row['chain_id']
-            to_address = row['address']
-            print(f"Checking proxy contract for {to_address} on chain {chain_id}")
-            if contract_inspector.check_proxy_contract(chain_id, to_address):
-                df.at[index, 'Reason'] = "Cant get proxy addr"
-
-    df.to_excel(INPUT_PATH, index=False)
+        address_path = os.path.join(chain_id_path, to_address)
+        updated_row = parse_and_classify_solidity_code(chain_id, method_id, to_address, address_path, row)
+        if updated_row is not None:
+            updated_rows.append(updated_row)
+    
+    return updated_rows
 
 
-if __name__ == '__main__':
-    main()
+# Task 1
+def handle_implementation(chain_id, group_df, df):
+    contract_inspector = ContractInspector(config)
+    try:
+        for index, row in group_df.iterrows():
+            imple_address, info = contract_inspector.fetch_chain_implementation(chain_id, row['address'])
+            time.sleep(0.5)
+            df.at[index, 'Imple_address'] = imple_address
+            df.at[index, 'Info'] = info
+            print(f"Handled {chain_id}, {row['address']}")
+    except Exception as e:
+        print(f"Error processing chain {chain_id}: {e}")
+
+# Task 2
+def handle_sourcecode(chain_id, group_df):
+    contract_inspector = ContractInspector(config)
+    for index, row in group_df.iterrows():
+        imple_address = row['Imple_address']
+        if pd.notna(imple_address):
+            print(f"Downloading source code for {row['address']} on chain {chain_id}")
+            try:
+                contract_inspector.download_contract_source(SOURCE_CODE_PATH, imple_address, chain_id, f"{row['address']}")
+            except Exception as e:
+                print(f"Error downloading source code for {row['address']} on chain {chain_id}: {e}")
+
+# Task 3
+def handle_classification(df, filepath):
+    base_path = SOURCE_CODE_PATH
+    # Ensure the DataFrame contains the necessary columns
+    if 'address' not in df.columns or 'method_id' not in df.columns:
+        raise ValueError("DataFrame must contain 'address' and 'method_id' columns.")
+    df.set_index(['address', 'method_id'], inplace=True)
+
+    all_updates = []
+    with ThreadPoolExecutor() as executor:
+        futures = [executor.submit(process_and_classify, chain_id, base_path, df.copy()) for chain_id in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, chain_id))]
+        for future in futures:
+            all_updates.extend(future.result())
+
+    for update in all_updates:
+        if update:
+            # Update the DataFrame with the new values
+            update_keys = [k for k in update.keys() if k not in ['address', 'method_id']]
+            df.loc[(update['address'], update['method_id']), update_keys] = [update[k] for k in update_keys]
+
+    try:
+        df.to_excel(filepath, index=True, merge_cells=False)  
+        print(f"Results updated and saved to {filepath}")
+        # Reset the index after saving
+        df.reset_index(inplace=True)
+    except Exception as e:
+        print(f"Error when trying to save to Excel: {e}")
+
+# Task 4
+def handle_confidence_score(chain_id, group_df, df):
+    try:
+        for index, row in group_df.iterrows():
+            protocol_name = row['protocol_name']
+            project_intro = row['description']
+            function_name = row['Function']
+            classification = row['Category']
+            if pd.isna(classification):
+                continue  
+            # Fetch the confidence score for the classification
+            confidence_score = fetch_confidence_score(protocol_name, project_intro, function_name, classification)
+            df.at[index, 'Confidence'] = confidence_score
+            print(f"Confidence score for {protocol_name}: {confidence_score}")
+            time.sleep(0.5)
+    except Exception as e:
+        print(f"Error processing chain {chain_id}: {e}")
+
+# Task 5
+def handle_proxy_contracts_check(chain_id, group_df, df):
+    contract_inspector = ContractInspector(config)
+    try:
+        for index, row in group_df.iterrows():
+            if row['address'] == row['Imple_address'] and pd.isna(row['Category']):
+                to_address = row['address']
+                print(f"Checking proxy contract for {to_address} on chain {chain_id}")
+                # Check if the implementation address is a proxy contract and not able to get the imple address
+                if contract_inspector.check_proxy_contract(chain_id, to_address):
+                    df.at[index, 'Reason'] = "Can't get proxy addr"
+    except Exception as e:
+        print(f"Error processing chain {chain_id} when check proxy contracts: {e}")
 
