@@ -37,21 +37,20 @@ def check_proxy_contracts(df, filepath):
         for future in futures:
             result = future.result()
     df.to_excel(filepath, sheet_name='Sheet1', index=False)
-
 def main():
-    filepath = './data/source/label_vault_20240731的副本 copy.xlsx'
+    filepath = './data/source/debank_0815_filtered.xlsx'
     df = pd.read_excel(filepath, sheet_name='Sheet1')
-    df['Imple_address'] = None
-    df['Info'] = None
+    # df['Imple_address'] = None
+    # df['Info'] = None
 
-    update_implementation_addresses(df, filepath)
-    print("update_implementation_addresses done")
+    # update_implementation_addresses(df, filepath)
+    # print("update_implementation_addresses done")
 
-    download_sources(df, filepath)
-    print("download_sources done")
+    # download_sources(df, filepath)
+    # print("download_sources done")
 
-    process_all_data(df, filepath)
-    print("process_all_data done")
+    # process_all_data(df, filepath)
+    # print("process_all_data done")
 
     update_confidence_scores(df, filepath)
     print("update_confidence_scores done")
